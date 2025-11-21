@@ -43,7 +43,7 @@ node('docker-slave') {
             echo "Building Backend Image..."
             sh """
                 cd backend
-                docker build -t notes-app-backend:latest .
+                sudo docker build -t notes-app-backend:latest .
             """
         } else {
             echo "No backend changes – skipping backend build"
@@ -53,7 +53,7 @@ node('docker-slave') {
             echo "Building Frontend Image..."
             sh """
                 cd frontend
-                docker build -t notes-app-frontend:latest .
+                sudo docker build -t notes-app-frontend:latest .
             """
         } else {
             echo "No frontend changes – skipping frontend build"
@@ -64,15 +64,15 @@ node('docker-slave') {
 
         if (BACKEND_CHANGED) {
             sh """
-                docker tag notes-app-backend:latest tapashranjannandi/notes-app-backend:latest
-                docker push tapashranjannandi/notes-app-backend:latest
+                sudo docker  tag notes-app-backend:latest tapashranjannandi/notes-app-backend:latest
+                sudo docker  push tapashranjannandi/notes-app-backend:latest
             """
         }
 
         if (FRONTEND_CHANGED) {
             sh """
-                docker tag notes-app-frontend:latest tapashranjannandi/notes-app-frontend:latest
-                docker push tapashranjannandi/notes-app-frontend:latest
+                sudo docker  tag notes-app-frontend:latest tapashranjannandi/notes-app-frontend:latest
+                sudo docker  push tapashranjannandi/notes-app-frontend:latest
             """
         }
 
