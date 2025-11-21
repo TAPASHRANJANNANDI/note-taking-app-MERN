@@ -67,7 +67,7 @@ node('docker-slave') {
                                          passwordVariable: 'DOCKER_PASS')]) {
 
             sh """
-                echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                echo "$DOCKER_PASS" | sudo docker login -u "$DOCKER_USER" --password-stdin
             """
         }
           }
