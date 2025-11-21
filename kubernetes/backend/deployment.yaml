@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-app-backend-deployment
+  labels:
+    app: notes-app-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: notes-app-backend
+  template:
+    metadata:
+      labels:
+        app: notes-app-backend
+    spec:
+      containers:
+      - name: notes-app-backend
+        image: tapashranjannandi/notes-app-backend:latest
+        env: 
+        - name: PORT
+          value: "4001"
+        - name: MongoDBURI
+          value: "mongodb+srv://tapashbariflo_db_user:yuYD21YBP1bziUSx@cluster1.ynrsg2p.mongodb.net/notesDb?retryWrites=true&w=majority&appName=Cluster1"
+        ports:
+        - containerPort: 4001
