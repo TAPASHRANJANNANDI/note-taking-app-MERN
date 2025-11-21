@@ -72,6 +72,13 @@ node('docker-slave') {
         }
           }
         if (BACKEND_CHANGED) {
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-creds',
+                                         usernameVariable: 'DOCKER_USER',
+                                         passwordVariable: 'DOCKER_PASS')]) {
+
+            sh """
+                echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            """
             sh """
                 sudo docker  tag notes-app-backend:latest tapashranjannandi/notes-app-backend:latest
                 sudo docker  push tapashranjannandi/notes-app-backend:latest
@@ -79,6 +86,13 @@ node('docker-slave') {
         }
 
         if (FRONTEND_CHANGED) {
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-creds',
+                                         usernameVariable: 'DOCKER_USER',
+                                         passwordVariable: 'DOCKER_PASS')]) {
+
+            sh """
+                echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            """
             sh """
                 sudo docker  tag notes-app-frontend:latest tapashranjannandi/notes-app-frontend:latest
                 sudo docker  push tapashranjannandi/notes-app-frontend:latest
