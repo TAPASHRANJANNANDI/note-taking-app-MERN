@@ -54,7 +54,7 @@ node('docker-slave') {
         }
     }
 }
-node ('kubernetes-slave') {
+node ('kubernetes-node-slave') {
     if (BACKEND_CHANGED) {
         echo "Deploying backend Kubernetes resources"
         sh """
