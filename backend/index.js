@@ -24,3 +24,4 @@ app.use("/api/v1/noteapp", noteRoutes)
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)
 })
+// mongodb+srv://tapashbariflo_db_user:yuYD21YBP1bziUSx@cluster1.ynrsg2p.mongodb.net/notesDb?retryWrites=true&w=majority&appName=Cluster1
