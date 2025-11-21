@@ -1,6 +1,6 @@
 node('docker-slave') {
     def changedFiles = sh(
-        script: "git diff --name-only HEAD~1 HEAD || true", //check the commit
+        script: "git diff --name-only HEAD~1 HEAD || true", //check new commits
         returnStdout: true
     ).trim()
     echo "Changed files:\n${changedFiles}"
