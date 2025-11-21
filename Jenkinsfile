@@ -6,7 +6,7 @@ def BACKEND_CHANGED = false
 def FRONTEND_CHANGED = false
 def K8_BACKEND_CHANGED = false
 def K8_FRONTEND_CHANGED = false
-def JENkINSFILE_CHANGED = false
+def J_FILE_CHANGED = false
 node('docker-slave') {
 
     stage('Check Changes') {
@@ -22,8 +22,8 @@ node('docker-slave') {
         FRONTEND_CHANGED   = changedFiles.contains("frontend/")
         K8_BACKEND_CHANGED = changedFiles.contains("kubernetes/backend/")
         K8_FRONTEND_CHANGED = changedFiles.contains("kubernetes/frontend/")
-        JENkINSFILE_CHANGED = changedFiles.contains("Jenkinsfile")
-        if (JENKINSFILE_CHANGED) {
+        J_FILE_CHANGED = changedFiles.contains("Jenkinsfile")
+        if (J_FILE_CHANGED) {
             echo "Jenkinsfile changed – deploying entire project!"
             BACKEND_CHANGED = true
             FRONTEND_CHANGED = true
