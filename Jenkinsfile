@@ -127,7 +127,7 @@ node('kubernetes-node-slave') {
             echo "Deploying Backend..."
             sh """
                 kubectl apply -f ./kubernetes/backend/deployment.yaml
-                kubectl apply -f ./kubernetes/backend/services.yaml
+                kubectl apply -f ./kubernetes/backend/service.yaml
                 kubectl rollout restart deployment/notes-app-backend-deployment || true
             """ 
         } else {
@@ -138,7 +138,7 @@ node('kubernetes-node-slave') {
             echo "Deploying Frontend..."
             sh """
                 kubectl apply -f ./kubernetes/frontend/deployment.yaml
-                kubectl apply -f ./kubernetes/frontend/services.yaml
+                kubectl apply -f ./kubernetes/frontend/service.yaml
                 kubectl rollout restart deployment/notes-app-frontend-deployment || true
             """
         } else {
