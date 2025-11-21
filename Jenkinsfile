@@ -126,9 +126,9 @@ node('kubernetes-node-slave') {
         if (BACKEND_CHANGED || K8_BACKEND_CHANGED) {
             echo "Deploying Backend..."
             sh """
-                kubectl apply -f kubernetes/backend/deployment.yaml
-                kubectl apply -f kubernetes/backend/services.yaml
-                kubectl rollout restart deployment/nodejs-backend-deployment || true
+                kubectl apply -f ./kubernetes/backend/deployment.yaml
+                kubectl apply -f ./kubernetes/backend/services.yaml
+                kubectl rollout restart deployment/notes-app-backend-deployment || true
             """ 
         } else {
             echo "Backend – no changes"
@@ -137,9 +137,9 @@ node('kubernetes-node-slave') {
         if (FRONTEND_CHANGED || K8_FRONTEND_CHANGED) {
             echo "Deploying Frontend..."
             sh """
-                kubectl apply -f kubernetes/frontend/deployment.yaml
-                kubectl apply -f kubernetes/frontend/services.yaml
-                kubectl rollout restart deployment/react-frontend-app-deployment || true
+                kubectl apply -f ./kubernetes/frontend/deployment.yaml
+                kubectl apply -f ./kubernetes/frontend/services.yaml
+                kubectl rollout restart deployment/notes-app-frontend-deployment || true
             """
         } else {
             echo "Frontend – no changes"
