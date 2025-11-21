@@ -20,7 +20,7 @@ spec:
         env: 
         - name: PORT
           value: "4001"
-        - name: MongoDBURI
+        - name: MONGO_URL
           value: "mongodb+srv://tapashbariflo_db_user:yuYD21YBP1bziUSx@cluster1.ynrsg2p.mongodb.net/notesDb?retryWrites=true&w=majority&appName=Cluster1"
         ports:
         - containerPort: 4001
