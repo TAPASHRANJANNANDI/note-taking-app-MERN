@@ -22,7 +22,7 @@ node('docker-slave') {
         FRONTEND_CHANGED   = changedFiles.contains("frontend/")
         K8_BACKEND_CHANGED = changedFiles.contains("kubernetes/backend/")
         K8_FRONTEND_CHANGED = changedFiles.contains("kubernetes/frontend/")
-        J_FILE_CHANGED = changedFiles.contains("Jenkinsfile")
+        J_FILE_CHANGED = changedFiles.contains("Jenkinsfile") // added jenkins file
         if (J_FILE_CHANGED) {
             echo "Jenkinsfile changed – deploying entire project!"
             BACKEND_CHANGED = true
@@ -99,7 +99,7 @@ node('kubernetes-node-slave') {
                 kubectl apply -f kubernetes/backend/deployment.yaml
                 kubectl apply -f kubernetes/backend/services.yaml
                 kubectl rollout restart deployment/nodejs-backend-deployment || true
-            """
+            """ 
         } else {
             echo "Backend – no changes"
         }
